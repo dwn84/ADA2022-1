@@ -70,3 +70,18 @@ tiempoTotal=tiempoFinal - tiempoInicial
 print("Tiempo de ejecución total:{}". format(tiempoTotal))
     
 #recursividad mutua...
+
+#validar si un número es par o impar
+def par(n):
+    #caso base
+    if(n==0):
+        return True
+    else:
+        return impar(n-1)
+    
+def impar(n):
+    #caso base
+    if(n==0):
+        return False
+    else:
+        return par(n-1)
