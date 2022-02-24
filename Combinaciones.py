@@ -1,3 +1,39 @@
+class Persona:
+    
+    def __init__(self,nombre,sexo):
+        self.nombre = nombre
+        self.sexo = sexo
+        
+        
+a = Persona('Diego','M')
+b = Persona('Daniel','M')
+c = Persona('Michell','F')
+d = Persona('Jorge','M')
+e = Persona('Luissa','F')
+f = Persona('Edwin','M')
+g = Persona('Melquiadez','M')
+h = Persona('Esperanza','F')
+
+personitas = [a,b,c,d,e,f,g,h]
+def soloHombres(listaP):    
+    if (listaP.sexo == "M"):
+        return True
+    else:
+        return False
+  
+#Lista sin mujeres
+filtered = filter(soloHombres, personitas)
+
+
+def mostrarNombrepersona(listapersonas):
+    listaNombres =[]
+    for p in listapersonas:
+        listaNombres.append(p.nombre)
+    return listaNombres
+
+print(mostrarNombrepersona(personitas))
+
+print(mostrarNombrepersona(filtered))
 #Calcular la cantidad total de combinaciones de tamaño específico
 def potencia(c):
     if(len(c)==0):
@@ -20,7 +56,7 @@ B = ["Diego", "Daniel", "Cristian", "Michell", "Jorge", "Maria Camila", "Luissa"
 def combinaciones(n,r):
     return [datos for datos in potencia(n) if len(datos)== r]
 
-print(combinaciones(B, 2))
+print(combinaciones(B, 3))
 
 #Experimento combinaciones: pareja, mínimo una mujer
 parejasMin1Muj = [['Diego', ' '], 
@@ -53,4 +89,26 @@ print(f"Total de posibilidades del sanduche: {totalCombinaciones(3,2)}" )
 #Total de posibilidades del sanduche: 6.0
 
 #¿Cuáles posibilidades existen para el sanduche?
-print(combinaciones(B, 2))
+print(combinaciones(B, 3))
+
+
+parejas = combinaciones(personitas, 2)
+parejasValidas = []
+#Validación de parejas
+for posiblePareja in parejas:
+    contadorMujeres = 0
+    for personaPareja in posiblePareja:
+        if(personaPareja.sexo=='F'):
+            contadorMujeres = contadorMujeres + 1
+        
+    if(contadorMujeres>0):
+        parejasValidas.append(posiblePareja)
+        
+print("Posibles parejas:")        
+for p in parejas:
+    print(mostrarNombrepersona(p))
+print("Parejas que cumplen la condición:")
+print(len(parejasValidas))        
+for p in parejasValidas:
+    print(mostrarNombrepersona(p))
+
