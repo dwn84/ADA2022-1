@@ -1,0 +1,34 @@
+#Llevar todos los datos de un JSON a una lista de objetos
+import json
+
+class Persona:
+    
+    def __init__(self,nombre,sexo):
+        self.nombre = nombre
+        self.sexo = sexo
+
+
+#https://www.delftstack.com/es/howto/python/iterate-through-json-python/
+
+jsonstring1 = '{"persona1":{"nombre":"ana","sexo":"f"},"persona2":{"nombre":"adriana","sexo":"f"},"persona3":{"nombre":"Alberto","sexo":"m"}}'
+
+#Cargar los datos en un diccionario
+json_dicti = json.loads(jsonstring1)
+
+listaPersonas =[]
+valoresAtributos = []
+
+#Recorrer el diccionario con sus llaves
+for key in json_dicti:
+    objeto = key
+    contenido = json_dicti[key]    
+    print(objeto)
+    valoresAtributos.clear()
+    #recorrer los atributos
+    for atributo in contenido:
+        print(atributo,":",contenido[atributo])
+        valoresAtributos.append(contenido[atributo])            
+
+    listaPersonas.append((Persona((valoresAtributos[0]),(valoresAtributos[1]))))
+    
+      
