@@ -77,7 +77,28 @@ def selectSort(listData):
         
     print(f"Iteraciones método selección:{comparaciones}")
     return listData    
-        
+
+def quick_sort(listData):
+    n = len(listData)
+    if n<2:
+        return listData    
+    
+    
+    frontier = 0
+    
+    for i in range(frontier+1,n):
+        if(listData[1]<listData[0]):
+            frontier += 1
+            listData[i],listData[frontier] = listData[frontier],listData[i]
+    listData[0], listData[frontier]= listData[frontier], listData[0]
+
+    left = quick_sort(listData[0:frontier-1])
+    right= quick_sort(listData[frontier+1:])
+    
+    listData = left + [listData[frontier]] + right
+    return listData
+
+#pendiente por validar
         
         
 #miLista = [1,2,3,4,5,6,7,8,9]#el mejor caso posible
