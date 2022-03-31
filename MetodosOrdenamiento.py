@@ -92,7 +92,7 @@ def quick_sort(listData):
             listData[i],listData[frontier] = listData[frontier],listData[i]
     listData[0], listData[frontier]= listData[frontier], listData[0]
 
-    left = quick_sort(listData[0:frontier-1])
+    left = quick_sort(listData[0:frontier])
     right= quick_sort(listData[frontier+1:])
     
     listData = left + [listData[frontier]] + right
@@ -108,11 +108,13 @@ miLista2 = miLista.copy()#el peor caso posible
 miLista3 = miLista.copy()#el peor caso posible
 miLista4 = miLista.copy()#el peor caso posible
 milista5 = miLista.copy()
+milista6 = miLista.copy()
 
 print(WorstBubbleSort(miLista,0))
 print(bubbleSort(miLista1,0))
 print(bubbleSortCheckOrdered(miLista2,0))
 print(recursiveBubbleSort(miLista3))
 print(insertSort(miLista4))
-print(selectSort(miLista4))
-
+print(selectSort(milista5))
+print("Quick Sort")
+print(quick_sort(milista6))
