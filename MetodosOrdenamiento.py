@@ -1,4 +1,3 @@
-
 def WorstBubbleSort(listData,comparaciones):
     
     for i in range(len(listData)-1):
@@ -78,6 +77,8 @@ def selectSort(listData):
     print(f"Iteraciones método selección:{comparaciones}")
     return listData    
 
+
+
 def quick_sort(listData):
     n = len(listData)
     if n<2:
@@ -98,9 +99,39 @@ def quick_sort(listData):
     listData = left + [listData[frontier]] + right
     return listData
 
-#pendiente por validar
+def merge_sort(listData):
+    
+    if(len(listData)>1):
+        mid = len(listData)//2
+        L=listData[:mid]
+        R=listData[mid:]
+        merge_sort(L)
+        merge_sort(R)
+
+        i = j = k = 0      
         
         
+        while(i<len(L) and j<len(R)):
+            if(L[i]<R[j]):
+                listData[k]=L[i]
+                i = i + 1
+            else:
+                listData[k]=R[j]
+                j = j + 1
+            k = k + 1
+            
+        while(i<len(L)) :            
+            listData[k]=L[i]
+            i = i + 1
+            k = k + 1
+            
+        while(j<len(R)) :            
+            listData[k]=R[j]
+            j = j + 1
+            k = k + 1
+            
+    return listData
+             
 #miLista = [1,2,3,4,5,6,7,8,9]#el mejor caso posible
 miLista = [11,10,9,8,7,6,5,4,3,2,1]#el peor caso posible
 miLista1 = miLista.copy()#el peor caso posible
@@ -109,6 +140,7 @@ miLista3 = miLista.copy()#el peor caso posible
 miLista4 = miLista.copy()#el peor caso posible
 milista5 = miLista.copy()
 milista6 = miLista.copy()
+milista7 = [94,	84	,75	,19	,32	,88	,36	,100,22	,67	,3	,30	,54	,25	,55]
 
 print(WorstBubbleSort(miLista,0))
 print(bubbleSort(miLista1,0))
@@ -118,3 +150,7 @@ print(insertSort(miLista4))
 print(selectSort(milista5))
 print("Quick Sort")
 print(quick_sort(milista6))
+print("Merge Sort")
+print(merge_sort(milista7))
+
+
