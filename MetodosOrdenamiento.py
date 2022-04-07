@@ -131,7 +131,33 @@ def merge_sort(listData):
             k = k + 1
             
     return listData
-             
+
+
+def go_Through_Heap(listData, n):
+    for i in range(n,-1,-1):
+        validate_Max_Heap(listData,i,n)
+        
+def validate_Max_Heap(listData,k,n):
+    leftChild = (2 * k) + 1
+    rightChild = (2 * k) + 2
+    maximum = k
+    
+    if(leftChild <= n and listData[leftChild]>listData[maximum]):
+        maximum = leftChild
+        
+    if(rightChild <= n and listData[rightChild]>listData[maximum]):
+        maximum = rightChild
+
+    if(maximum != k):
+        listData[k],listData[maximum]=listData[maximum],listData[k]
+        validate_Max_Heap(listData,maximum,n)
+                
+       
+listaMonticulo = [11,99,55,88,33,22]    
+go_Through_Heap(listaMonticulo, len(listaMonticulo)-1)
+print("validación HEAP")
+print(listaMonticulo)
+
 #miLista = [1,2,3,4,5,6,7,8,9]#el mejor caso posible
 miLista = [11,10,9,8,7,6,5,4,3,2,1]#el peor caso posible
 miLista1 = miLista.copy()#el peor caso posible
