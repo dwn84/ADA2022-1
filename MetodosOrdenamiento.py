@@ -152,7 +152,28 @@ def validate_Max_Heap(listData,k,n):
         listData[k],listData[maximum]=listData[maximum],listData[k]
         validate_Max_Heap(listData,maximum,n)
                 
-       
+def counting_Sort(listData):      
+    n = len(listData)
+    final = [0] * n
+    maxValue = max(listData) + 1
+    CountingArray = [0] * maxValue
+    for i in range(0,n):
+        print(listData[i])
+        CountingArray[listData[i]] += 1    
+
+    for i in range(1,maxValue):
+        CountingArray[i] +=CountingArray[i-1]
+    print(CountingArray)        
+
+    for i in range(0,n):
+        final[CountingArray[listData[i]]-1] = listData[i]
+        CountingArray[listData[i]] -= 1  
+    print(final)   
+
+
+listaConteo = [8,3,4,5,-11,5,1]
+print("Arreglo de conteo")
+counting_Sort(listaConteo )
 listaMonticulo = [11,99,55,88,33,22]    
 go_Through_Heap(listaMonticulo, len(listaMonticulo)-1)
 print("validación HEAP")
