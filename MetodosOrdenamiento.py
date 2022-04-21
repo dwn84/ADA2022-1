@@ -132,6 +132,7 @@ def merge_sort(listData):
             
     return listData
 
+   
 
 def go_Through_Heap(listData, n):
     for i in range(n,-1,-1):
@@ -152,12 +153,13 @@ def validate_Max_Heap(listData,k,n):
         listData[k],listData[maximum]=listData[maximum],listData[k]
         validate_Max_Heap(listData,maximum,n)
                 
+
 def counting_Sort(listData):      
     n = len(listData)
     final = [0] * n
     maxValue = max(listData) + 1
     CountingArray = [0] * maxValue
-    for i in range(0,n):
+    for i in range(0,n):        
         print(listData[i])
         CountingArray[listData[i]] += 1    
 
@@ -171,14 +173,49 @@ def counting_Sort(listData):
     print(final)   
 
 
-listaConteo = [8,3,4,5,-11,5,1]
+def counting_Sort_Radix(listData,group):      
+    n = len(listData)
+    final = [0] * n    
+    CountingArray = [0] * 10
+    for i in range(0,n):
+        Actual_Group = (listData[i]//group) % 10
+        CountingArray[Actual_Group] += 1    
+
+    for i in range(1,10):
+        CountingArray[i] +=CountingArray[i-1]
+     
+    
+    i = n - 1
+    while i >= 0:
+    #for i in range(0,n):
+    #WTF!
+        Actual_Group = (listData[i]//group) % 10
+        CountingArray[Actual_Group] -= 1
+        final[CountingArray[Actual_Group]] = listData[i]          
+        i -= 1
+    
+    for i in range(0, n):
+        listData[i] = final[i]
+    
+
+def radix_Sort(listData):
+    maxValue = max(listData)
+    group = 1
+    while ((maxValue/group) > 1):
+        counting_Sort_Radix(listData,group)
+        group *= 10
+    print(listData)
+
+listaConteo = [218,3333,44,555,219,5,1]
 print("Arreglo de conteo")
-counting_Sort(listaConteo )
+radix_Sort(listaConteo)
+
 listaMonticulo = [11,99,55,88,33,22]    
 go_Through_Heap(listaMonticulo, len(listaMonticulo)-1)
 print("validación HEAP")
 print(listaMonticulo)
 
+             
 #miLista = [1,2,3,4,5,6,7,8,9]#el mejor caso posible
 miLista = [11,10,9,8,7,6,5,4,3,2,1]#el peor caso posible
 miLista1 = miLista.copy()#el peor caso posible
