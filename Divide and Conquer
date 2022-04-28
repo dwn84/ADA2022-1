@@ -1,0 +1,49 @@
+#Búsqueda binaria con la estrategía "divide and conquer"
+import math
+
+def buscar(lista, x):
+    def busqueda_binaria(lista, x, izq, der):    
+    
+        if izq <= der:
+            medio = (izq+der)//2      
+            
+            if lista[medio] == x:
+                return True
+    
+            elif lista[medio] > x:
+                return busqueda_binaria(lista,x,izq,medio-1)
+    
+            else:
+                return busqueda_binaria(lista,x,medio+1,der)
+            
+        return False
+    return busqueda_binaria(lista,x,0,(len(lista) -1))
+
+    
+datos = [1,2,3,4,7,9,11,13]
+
+print(buscar(datos,1))
+
+
+#Encontrar el mayor de un arreglo con la estrategia "divide and conquer"
+
+def encontrarMaximo(lista):
+    def dac_max(lista,indiceElemento, totalN):
+        maximum = -math.inf
+        print(indiceElemento)        
+        if(indiceElemento >= totalN-2):
+            if(lista[indiceElemento]>lista[indiceElemento + 1]):
+                return lista[indiceElemento]
+            else:
+                return lista[indiceElemento + 1]
+        maximum = dac_max(lista,indiceElemento + 1, totalN)
+        
+        if(lista[indiceElemento]>maximum):
+            return lista[indiceElemento]
+        else:
+            return maximum
+    return dac_max(lista,0, len(lista))
+        
+datos2 = [11991,-23,23,74,9999987,9,11,1773]
+print(encontrarMaximo(datos2))    
+    
