@@ -1,0 +1,27 @@
+# Caso de optimización de entrega de monedas para un valor dado
+# Siempre se va a priorar o seleccionar la moneda de mayor valor
+# Algoritmo voraz
+
+monedas = [1000,500,200,100,50]
+
+monedas_totales = []
+
+def calcular_Monedas(monedas, dinero_total):
+    contador_monedas = 0
+    for moneda in monedas:
+        while(moneda<=dinero_total):
+            dinero_total -= moneda
+            monedas_totales.append(moneda)
+            contador_monedas += 1
+        if (dinero_total==0):
+            break
+    print(f"el residuo es :{dinero_total}")
+    return contador_monedas
+
+dinero = 1375
+print("para un total de 1375, se utilizan")
+print(calcular_Monedas(monedas,dinero))
+print("las monedas son:")
+print(monedas_totales)
+
+
