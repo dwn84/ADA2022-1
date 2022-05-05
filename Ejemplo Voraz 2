@@ -1,0 +1,59 @@
+# Caso de optimización de entrega de monedas para un valor dado
+# Siempre se va a priorar o seleccionar la moneda de mayor valor
+# Algoritmo voraz
+
+#Las monedas tienen una cantidad específica
+
+class Monedas:
+    def __init__(self,valor, cantidad = 0):
+        self.denominacion = valor
+        self.cantidad = cantidad
+        
+    def __str__(self):
+        if self.cantidad<=1:
+            mensaje = f"{self.cantidad} moneda de {self.denominacion}"
+        else:
+            mensaje = f"{self.cantidad} monedas de {self.denominacion}"
+        return mensaje    
+    def total_Efectivo(self):
+        return self.denominacion*self.cantidad
+    
+def seleccionar_Moneda_Mayor(Moneditas):
+    mayor = 0
+    for moneda in Moneditas:
+        if (moneda.denominacion > mayor):
+            mayor = moneda.denominacion
+            moneda_Mayor = moneda
+    return moneda_Mayor
+
+def sumatoria_total_Monedas(Moneditas):
+    return sum(monedas.cantidad for monedas in Moneditas)
+
+def calcular_Monedas(Moneditas, Dinero):
+    monedas_disponibles = Moneditas[:]
+    monedas_totales = []
+    while Dinero > 0 and monedas_disponibles:
+        moneda_Mayor = seleccionar_Moneda_Mayor(monedas_disponibles)
+        monedas_disponibles.remove(moneda_Mayor)        
+        moneda_Mayor.cantidad = min(moneda_Mayor.cantidad,Dinero//moneda_Mayor.denominacion)
+        monedas_totales.append(moneda_Mayor)
+        Dinero -= (moneda_Mayor.total_Efectivo())
+    return monedas_totales
+
+moneditas = [Monedas(100,3),Monedas(50,5)]
+dinero = 1770
+
+def mostrar_monedas(Moneditas):
+    for monedas in Moneditas:
+        print(monedas)
+
+mostrar_monedas(calcular_Monedas(moneditas,dinero))
+
+#Indicar si es posible realizar la transacción
+#Indicar si sobra dinero
+
+    
+    
+    
+    
+    
