@@ -1,0 +1,55 @@
+import unittest
+import math
+
+class my_test(unittest.TestCase):
+    def test_es_menor(self):
+        self.assertTrue(2<3)    
+    def test_is_prime(self):
+        self.assertFalse(is_prime(4))
+        self.assertTrue(is_prime(2))
+        self.assertTrue(is_prime(3))
+        self.assertFalse(is_prime(8))
+        self.assertFalse(is_prime(10))
+        self.assertTrue(is_prime(7))
+        self.assertEqual(is_prime(-3),
+                         '404 Not Found')
+    def xyz(self):
+        self.assertEqual(cubic(2), 8)
+        self.assertEqual(cubic(-2), -8)
+        self.assertNotEqual(cubic(2), 4)
+        self.assertNotEqual(cubic(-3), 27)
+        
+    def test_say_hello(self):
+        self.assertEqual(say_hello("World"), "Hello, World")
+        self.assertEqual(say_hello("Baby"), "Hello, Baby")
+        self.assertNotEqual(say_hello("My Lord"), "Hi, My Lord")
+        self.assertNotEqual(say_hello("wtf!"), "Hi, wtf!")        
+
+def is_prime(n):
+    if n < 0:
+        return '404 Not Found'
+
+    if n <= 1:
+        return False
+
+    if n == 2:
+        return True
+
+    if n % 2 == 0:
+        return False
+
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def cubic(a):
+    return a * a * a
+
+
+def say_hello(name):
+    return "Hello, " + name
+
+unittest.main()
+        
