@@ -1,0 +1,73 @@
+memo = {}
+memoBU = []
+
+def fibo_tradicional(n):
+    if n==0 or n ==1:
+        return n
+    else:
+        return fibo_tradicional(n-1) + fibo_tradicional(n-2)
+        
+
+def fibo_top_down(n):
+    if n==0 or n ==1:
+        return n
+    elif n in memo:
+        return memo[n]
+    else:
+        memo[n] = fibo_top_down(n-1) + fibo_top_down(n-2)
+        return memo[n]
+    
+
+def fibo_bottom_up(n):    
+    if n==0 or n ==1:
+        return n
+    memoBU =[None] * (n+1)
+    memoBU[0] = 0
+    memoBU[1] = 1
+    
+    for i in range(2, n+1):
+        memoBU[i] = memoBU[i-1] + memoBU[i-2]
+        
+    return memoBU[n]
+
+
+print(fibo_top_down(34))
+print(fibo_bottom_up(34))
+print(fibo_tradicional(34))
+
+
+#Tomado de https://runestone.academy/ns/books/published/pythoned/Recursion/ProgramacionDinamica.html
+
+def vueltasProgDin(listaValoresMonedas,vueltas,minMonedas,monedasUsadas):
+   for centavos in range(vueltas+1):
+      conteoMonedas = centavos
+      nuevaMoneda = 1
+      for j in [m for m in listaValoresMonedas if m <= centavos]:
+            if minMonedas[centavos-j] + 1 < conteoMonedas:
+               conteoMonedas = minMonedas[centavos-j]+1
+               nuevaMoneda = j
+      minMonedas[centavos] = conteoMonedas
+      monedasUsadas[centavos] = nuevaMoneda
+   return minMonedas[vueltas]
+
+def imprimirMonedas(monedasUsadas,vueltas):
+   moneda = vueltas
+   while moneda > 0:
+      estaMoneda = monedasUsadas[moneda]
+      print(estaMoneda)
+      moneda = moneda - estaMoneda
+
+def main():
+    cantidad = 11
+    listaM = [1,5,10,21,25]
+    monedasUsadas = [0]*(cantidad+1)
+    conteoMonedas = [0]*(cantidad+1)
+
+    print("Dar unas vueltas de",cantidad,"centavos requiere")
+    print(vueltasProgDin(listaM,cantidad,conteoMonedas,monedasUsadas),"monedas")
+    print("Tales monedas son:")
+    imprimirMonedas(monedasUsadas,cantidad)
+    print("La lista usada es la siguiente:")
+    print(monedasUsadas)
+
+main()
